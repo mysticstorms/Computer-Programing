@@ -24,4 +24,21 @@ public class Board {
         }
         System.out.println("---------------");
     }
+
+    public boolean dropToken(int col, char playerToken) {
+        if (col < 0 || col >= COLS) {
+            System.out.println("Invalid column. Please choose a column between 1 and 7.");
+            return false;
+        }
+
+        for (int i = ROWS - 1; i >= 0; i--) {
+            if (grid[i][col] == '.') {
+                grid[i][col] = playerToken;
+                return true;
+            }
+        }
+
+        System.out.println("Column is full. Please choose another column.");
+        return false;
+    }
 }

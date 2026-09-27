@@ -41,4 +41,56 @@ public class Board {
         System.out.println("Column is full. Please choose another column.");
         return false;
     }
+
+    public boolean checkWin(char token) {
+        // Check horizontal
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLS - 3; j++) {
+                if (grid[i][j] == token && 
+                grid[i][j + 1] == token && 
+                grid[i][j + 2] == token && 
+                grid[i][j + 3] == token) {
+                    return true;
+                }
+            }
+        }
+
+        // Check vertical
+        for (int i = 0; i < ROWS - 3; i++) {
+            for (int j = 0; j < COLS; j++) {
+                if (grid[i][j] == token && 
+                grid[i + 1][j] == token && 
+                grid[i + 2][j] == token && 
+                grid[i + 3][j] == token) {
+                    return true;
+                }
+            }
+        }
+
+        // Check diagonal (/)
+        for (int i = 3; i < ROWS; i++) {
+            for (int j = 0; j < COLS - 3; j++) {
+                if (grid[i][j] == token && 
+                grid[i - 1][j + 1] == token && 
+                grid[i - 2][j + 2] == token && 
+                grid[i - 3][j + 3] == token) {
+                    return true;
+                }
+            }
+        }
+
+        // Check diagonal (\)
+        for (int i = 0; i < ROWS - 3; i++) {
+            for (int j = 0; j < COLS - 3; j++) {
+                if (grid[i][j] == token && 
+                grid[i + 1][j + 1] == token && 
+                grid[i + 2][j + 2] == token && 
+                grid[i + 3][j + 3] == token) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 }

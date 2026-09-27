@@ -18,7 +18,14 @@ public class Main {
             int col = scanner.nextInt() - 1;
 
             if (gameBoard.dropToken(col, currentPlayer)) {
-                isPlayer1Turn = !isPlayer1Turn;
+            
+                if (gameBoard.checkWin(currentPlayer)) {
+                    gameBoard.printBoard();
+                    System.out.println("Player " + currentPlayer + " wins! Game over.");
+                    gameActive = false;
+                } else {
+                    isPlayer1Turn = !isPlayer1Turn;
+                }
             }
         }
     scanner.close();
